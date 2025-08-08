@@ -41,7 +41,7 @@ def test_dashboards_exists(playwright: Playwright) -> None:
 
     grafana.open_dashboards(page)
 
-    expect(page.get_by_role("link", name="shellexporter")).to_be_visible()
+    expect(page.get_by_role("link", name="shellexporter2")).to_be_visible()
 
 
 @pytest.mark.base
@@ -50,7 +50,7 @@ def test_dashboard_contains_panel(playwright: Playwright) -> None:
 
     grafana.open_dashboard(page, "shellexporter")
 
-    panel = page.get_by_test_id(f"data-testid Panel header bash_gauge.sh").get_by_role("heading",
+    panel = page.get_by_test_id(f"data-testid Panel header bash_gauge2.sh").get_by_role("heading",
                                                                                        name="bash_gauge.sh")
     expect(panel).to_be_visible()
 
@@ -59,7 +59,7 @@ def test_dashboard_contains_panel(playwright: Playwright) -> None:
 def test_panel(playwright: Playwright) -> None:
     page = subject.setup(playwright)
 
-    grafana.open_dashboard(page, "shellexporter")
+    grafana.open_dashboard(page, "shellexporter2")
 
     for i in range(1, 9):
         expect(page.get_by_text(f"for_{i}", exact=True)).to_be_visible()
