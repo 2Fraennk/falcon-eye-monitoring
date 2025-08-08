@@ -50,7 +50,7 @@ def test_dashboard_contains_panel(playwright: Playwright) -> None:
 
     grafana.open_dashboard(page, "shellexporter")
 
-    panel = page.get_by_test_id(f"data-testid Panel header bash_gauge.ssh").get_by_role("heading",
+    panel = page.get_by_test_id(f"data-testid Panel header bash_gauge.sh").get_by_role("heading",
                                                                                        name="bash_gauge.sh")
     expect(panel).to_be_visible()
 
