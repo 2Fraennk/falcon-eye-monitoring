@@ -1,7 +1,7 @@
 name: test-action
 on: pull_request
 jobs:
-  test-fem-basic:
+  test_fem_basic:
     runs-on: ubuntu-latest
     steps:
       - name: check out F.E.M. repository
@@ -26,7 +26,7 @@ jobs:
           path: fem_tests.out
 
   analyze_test_results:
-    needs: test-fem-basic
+    needs: test_fem_basic
     runs-on: ubuntu-latest
     steps:
       - name: download fem_test results
