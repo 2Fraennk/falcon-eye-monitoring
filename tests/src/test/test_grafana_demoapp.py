@@ -57,7 +57,7 @@ def test_dashboard_contains_panels(playwright: Playwright) -> None:
         panel = page.get_by_test_id(f"data-testid Panel header {panel_heading}").get_by_role("heading",
                                                                                              name=panel_heading)
 
-        expect(panel).to_be_visible({timeout: 60000})
+        expect(panel).to_be_visible()
 
     # scroll down
     page.mouse.wheel(0, 250)
@@ -67,7 +67,7 @@ def test_dashboard_contains_panels(playwright: Playwright) -> None:
         panel = page.get_by_test_id(f"data-testid Panel header {panel_heading}").get_by_role("heading",
                                                                                              name=panel_heading)
 
-        expect(panel).to_be_visible({timeout: 60000})
+        expect(panel).to_be_visible(})
 
 
 @pytest.mark.base
@@ -77,7 +77,7 @@ def test_panel_data_trace_duration_graph(playwright: Playwright) -> None:
     grafana.open_dashboard(page, "demoapp")
 
     expect(page.get_by_test_id("data-testid VizLegend series Duration")
-           .get_by_role("button", name="Duration")).to_be_visible({timeout: 60000})
+           .get_by_role("button", name="Duration")).to_be_visible(60000,True)
 
 
 @pytest.mark.base
@@ -90,9 +90,9 @@ def test_panel_data_trace_duration_list(playwright: Playwright) -> None:
     page.get_by_test_id("data-testid Panel menu trace duration descending").click()
     page.get_by_test_id("data-testid Panel menu item View").click()
 
-    expect(page.get_by_text("demoapp: GET /owners").first).to_be_visible({timeout: 60000})
-    expect(page.get_by_text("demoapp: GET /vets.html").first).to_be_visible({timeout: 60000})
-    expect(page.get_by_text("demoapp: GET /oups").first).to_be_visible({timeout: 60000})
+    expect(page.get_by_text("demoapp: GET /owners").first).to_be_visible()
+    expect(page.get_by_text("demoapp: GET /vets.html").first).to_be_visible()
+    expect(page.get_by_text("demoapp: GET /oups").first).to_be_visible()
 
 
 @pytest.mark.base
@@ -107,7 +107,7 @@ def test_panel_data_runtime_exception(playwright: Playwright) -> None:
            .get_by_role("button", name="RuntimeException").first).to_be_visible()
 
     expect(page.get_by_test_id("data-testid Panel header logfile - exceptions")
-           .locator("div").filter(has_text="exception").first).to_be_visible({timeout: 60000})
+           .locator("div").filter(has_text="exception").first).to_be_visible()
 
 
 @pytest.mark.base
@@ -119,7 +119,7 @@ def test_panel_data_http_status(playwright: Playwright) -> None:
     page.get_by_test_id("data-testid Panel header trace duration").press("PageDown")
 
     expect(page.get_by_test_id("data-testid Panel header http status code")
-           .locator("div").filter(has_text="Name").first).to_be_visible({timeout: 60000})
+           .locator("div").filter(has_text="Name").first).to_be_visible()
 
 
 @pytest.mark.base
@@ -131,4 +131,4 @@ def test_panel_data_app_starts(playwright: Playwright) -> None:
     page.get_by_test_id("data-testid Panel header trace duration").press("PageDown")
 
     expect(page.get_by_test_id("data-testid Panel header logfile - app start duration")
-           .get_by_role("button", name="container").first).to_be_visible({timeout: 60000})
+           .get_by_role("button", name="container").first).to_be_visible()
