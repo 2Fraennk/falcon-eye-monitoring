@@ -41,7 +41,7 @@ def test_dashboard_exists(playwright: Playwright) -> None:
 
     grafana.open_dashboards(page)
 
-    expect(page.get_by_role("link", name="demoapp")).to_be_visible(60000,True)
+    expect(page.get_by_role("link", name="demoapp").wait_for(timeout= 60000)).to_be_visible()
 
 
 @pytest.mark.base
@@ -67,7 +67,7 @@ def test_dashboard_contains_panels(playwright: Playwright) -> None:
         panel = page.get_by_test_id(f"data-testid Panel header {panel_heading}").get_by_role("heading",
                                                                                              name=panel_heading)
 
-        expect(panel).to_be_visible(60000,True)
+        expect(panel).to_be_visible()
 
 
 @pytest.mark.base
@@ -77,7 +77,7 @@ def test_panel_data_trace_duration_graph(playwright: Playwright) -> None:
     grafana.open_dashboard(page, "demoapp")
 
     expect(page.get_by_test_id("data-testid VizLegend series Duration")
-           .get_by_role("button", name="Duration")).to_be_visible(60000,True)
+           .get_by_role("button", name="Duration")).to_be_visible()
 
 
 @pytest.mark.base
