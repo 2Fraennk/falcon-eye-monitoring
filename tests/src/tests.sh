@@ -3,7 +3,7 @@ poetry run pytest --verbose /tests/src/test/test_demoapp.py
 rc=$?
 if [ "$rc" -gt 0 ]; then exit 1; fi
 
-echo "waiting 60 seconds to give some time to metrics shipping and calculation"
+echo "Notice: waiting for metrics, logs and traces up to 60 seconds being shipped and calculated"
 
 poetry run pytest --verbose /tests/src/test/test_grafana_demoapp.py
 rc=$?
