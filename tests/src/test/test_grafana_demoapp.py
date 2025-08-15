@@ -41,7 +41,7 @@ def test_dashboard_exists(playwright: Playwright) -> None:
 
     grafana.open_dashboards(page)
 
-    expect(page.get_by_role("link", name="demoapp").wait_for(timeout= 60000, state='visible')).to_be_visible()
+    expect(page.get_by_role("link", name="demoapp").wait_for(timeout=60000, state='visible')).to_be_visible()
 
 
 @pytest.mark.base
