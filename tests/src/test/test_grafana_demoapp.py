@@ -3,8 +3,8 @@ import time
 
 import pytest
 from playwright.sync_api import Page, Playwright, expect
-from tests.src.pages import grafana
-from tests.src.test.base import PreFlightCheck
+from src.pages import grafana
+from src.test.base import PreFlightCheck
 
 now = time.time()
 
