@@ -43,6 +43,7 @@ def test_dashboard_exists(playwright: Playwright) -> None:
 
     locator = page.get_by_role("link", name="demoapp")
     locator.wait_for(timeout=60000, state="visible")
+
     expect(locator).to_be_visible()
 
 
@@ -80,6 +81,7 @@ def test_panel_data_trace_duration_graph(playwright: Playwright) -> None:
 
     locator = page.get_by_test_id("data-testid VizLegend series Duration").get_by_role("button", name="Duration")
     locator.wait_for(timeout=60000, state="visible")
+
     expect(locator).to_be_visible()
 
 
@@ -93,22 +95,16 @@ def test_panel_data_trace_duration_list(playwright: Playwright) -> None:
     page.get_by_test_id("data-testid Panel menu trace duration descending").click()
     page.get_by_test_id("data-testid Panel menu item View").click()
 
-    locator = page.get_by_text("demoapp: GET /owners").first
-    locator.wait_for(timeout=60000, state="visible")
-    expect(locator).to_be_visible()
+    path_list = [
+        "demoapp: GET /owners",
+        "demoapp: GET /vets.html",
+        "demoapp: GET /oups"
+        ]
 
-    locator = page.get_by_text("demoapp: GET /vets.html").first
-    locator.wait_for(timeout=60000, state="visible")
-    expect(locator).to_be_visible()
-
-    locator = page.get_by_text("demoapp: GET /oups").first
-    locator.wait_for(timeout=60000, state="visible")
-    expect(locator).to_be_visible()
-
-    # for path in ("demoapp: GET /owners", "demoapp: GET /vets.html", "demoapp: GET /oups"):
-    #     locator = page.get_by_text(" ${path} ").first
-    #     locator.wait_for(timeout=60000, state="visible")
-    #     expect(locator).to_be_visible()
+    for p in path_list:
+        locator = page.get_by_text(p).first
+        locator.wait_for(timeout=60000, state="visible")
+        expect(locator).to_be_visible()
 
 
 @pytest.mark.base
@@ -124,6 +120,7 @@ def test_panel_data_runtime_exception(playwright: Playwright) -> None:
 
     locator = page.get_by_test_id("data-testid Panel header logfile - exceptions").locator("div").filter(has_text="exception").first
     locator.wait_for(timeout=60000, state="visible")
+
     expect(locator).to_be_visible()
 
 
@@ -137,6 +134,7 @@ def test_panel_data_http_status(playwright: Playwright) -> None:
 
     locator = page.get_by_test_id("data-testid Panel header http status code").locator("div").filter(has_text="Name").first
     locator.wait_for(timeout=60000, state="visible")
+
     expect(locator).to_be_visible()
 
 
@@ -150,4 +148,5 @@ def test_panel_data_app_starts(playwright: Playwright) -> None:
 
     locator = page.get_by_test_id("data-testid Panel header logfile - app start duration").get_by_role("button", name="container").first
     locator.wait_for(timeout=60000, state="visible")
+
     expect(locator).to_be_visible()
